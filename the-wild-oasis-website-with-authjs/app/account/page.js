@@ -7,11 +7,12 @@ export const metadata = {
 
 export default async function page() {
 	const session = await auth();
+	const firstName = session.user.name.split(" ").at(0);
 	// console.log(session);
 
 	return (
 		<h2 className="font-semibold text-2xl text-accent-400 mb-7">
-			Welcome, {session.user.name}
+			Welcome, {firstName}
 		</h2>
 	);
 }
