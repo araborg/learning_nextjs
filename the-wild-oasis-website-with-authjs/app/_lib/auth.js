@@ -26,6 +26,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 				if (!existingGuest)
 					await createGuest({
 						email: user.email,
+
 						fullName: user.name,
 					});
 
@@ -33,6 +34,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			} catch (error) {
 				return false;
 			}
+		},
+
+		async session({ session, user }) {
+			const guest = await getGuest(session.user.email);
+
+			session.user.guestId = guest.id;
+
+			return session;
 		},
 	},
 
