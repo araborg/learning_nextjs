@@ -3,7 +3,12 @@ import ReservationForm from "./ReservationForm";
 
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 
+import { auth } from "../_lib/auth";
+
 async function Reservation({ cabin }) {
+	const session = await auth();
+	console.log(session);
+
 	// bcos settings & bookingDates r all promises,
 	// one will have to resolve bf d other hence let's use
 	// Promise.all()
@@ -23,7 +28,11 @@ async function Reservation({ cabin }) {
 				cabin={cabin}
 			/>
 
-			<ReservationForm cabin={cabin} />
+			{session?.user ? (
+				<ReservationForm cabin={cabin} user={session.user} />
+			) : (
+				<LoginMessage />
+			)}
 		</div>
 	);
 }
