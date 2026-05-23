@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
+import { getGuest } from "./data-service";
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
 	providers: [
 		Google({
@@ -15,6 +17,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			console.log(auth);
 
 			return !!auth?.user;
+		},
+
+		async signIn({ user, account, profile }) {
+			try {
+				const existingGuest = await getGuest(user.email);
+
+				return true;
+			} catch (error) {
+				return false;
+			}
 		},
 	},
 
