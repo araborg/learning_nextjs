@@ -4,10 +4,11 @@ import ReservationForm from "./ReservationForm";
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 
 import { auth } from "../_lib/auth";
+import LoginMessage from "./LoginMessage";
 
 async function Reservation({ cabin }) {
 	const session = await auth();
-	console.log(session);
+	// console.log(session);
 
 	// bcos settings & bookingDates r all promises,
 	// one will have to resolve bf d other hence let's use
