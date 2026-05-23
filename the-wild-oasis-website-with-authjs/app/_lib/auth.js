@@ -22,6 +22,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
 	callbacks: {
 		authorized({ auth, request }) {
+			console.log(auth);
+
 			return !!auth?.user;
 		},
 	},
