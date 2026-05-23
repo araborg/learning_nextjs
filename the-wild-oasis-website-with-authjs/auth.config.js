@@ -1,37 +1,37 @@
-import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
+// // import NextAuth from "next-auth";
+// import Google from "next-auth/providers/google";
 
-export const authConfig = {
-	providers: [
-		Google({
-			clientId: process.env.AUTH_GOOGLE_ID,
+// export const authConfig = {
+// 	providers: [
+// 		Google({
+// 			clientId: process.env.AUTH_GOOGLE_ID,
 
-			clientSecret: process.env.AUTH_GOOGLE_SECRET,
-		}),
-	],
+// 			clientSecret: process.env.AUTH_GOOGLE_SECRET,
+// 		}),
+// 	],
 
-	// pages: {
-	// 	signIn: "/login",
-	// },
+// 	pages: {
+// 		signIn: "/login",
+// 	},
 
-	callbacks: {
-		authorized({ auth, request: { nextUrl } }) {
-			const isLoggedIn = !!auth?.user;
+// 	callbacks: {
+// 		authorized({ auth, request: { nextUrl } }) {
+// 			const isLoggedIn = !!auth?.user;
 
-			const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+// 			const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
 
-			if (isOnDashboard) {
-				if (isLoggedIn) return true;
-				return false; // Redirect unauthenticated users to login page
-			} else if (isLoggedIn) {
-				return Response.redirect(new URL("/dashboard", nextUrl));
-			}
+// 			if (isOnDashboard) {
+// 				if (isLoggedIn) return true;
+// 				return false; // Redirect unauthenticated users to login page
+// 			} else if (isLoggedIn) {
+// 				return Response.redirect(new URL("/dashboard", nextUrl));
+// 			}
 
-			return true;
-		},
-	},
+// 			return true;
+// 		},
+// 	},
 
-	// providers: [], // Add providers with an empty array for now
-};
+// 	// providers: [], // Add providers with an empty array for now
+// };
 
-// export { handlers as GET, handlers as POST };
+// // export { handlers as GET, handlers as POST };
