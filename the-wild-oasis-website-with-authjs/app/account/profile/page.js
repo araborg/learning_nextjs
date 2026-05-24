@@ -11,11 +11,11 @@ export const metadata = {
 
 export default async function Page() {
 	const session = await auth();
-	const guest = await getGuest();
+	const guest = await getGuest(session.user.email);
 
 	// CHANGE
 	// const countryFlag = "pt.jpg";
-	const nationality = "portugal";
+	// const nationality = "portugal";
 
 	return (
 		<div>
@@ -29,12 +29,12 @@ export default async function Page() {
 			</p>
 
 			{/* importing a server component inside of client compont */}
-			<UpdateProfileForm>
+			<UpdateProfileForm guest={guest}>
 				<SelectCountry
 					name="nationality"
 					id="nationality"
 					className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-					defaultCountry={nationality}
+					defaultCountry={guest.nationality}
 				/>
 			</UpdateProfileForm>
 		</div>
