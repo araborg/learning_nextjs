@@ -142,9 +142,13 @@ https://console.cloud.google.com/apis/dashboard
 Server Actions:
 are not for server components but for server actions.
 
+Server actions can be called from:
+1. action attribute in a <form> elemt (in server &
+client components)
 
+2. Event handlers (only client components)
 
-
+3. useEffect (only client components)
 
 
 
