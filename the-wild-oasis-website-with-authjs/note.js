@@ -151,6 +151,23 @@ client components)
 3. useEffect (only client components)
 
 
+In server actions, we can:
+1. Perform data mutations (create, update, delete)
+
+2. Update the UI with new data: Revalidate cache
+with revalidatePath and revalidateTag
+
+3. Work with cookies
+
+etc
+
+
+
+
+
+
+
+
 
 
 */
