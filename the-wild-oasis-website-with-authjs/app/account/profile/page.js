@@ -2,11 +2,17 @@ import UpdateProfileForm from "@/app/_components/UpdateProfileForm";
 
 import SelectCountry from "@/app/_components/SelectCountry";
 
+import { getGuest } from "@/app/_lib/data-service";
+import { auth } from "@/app/_lib/auth";
+
 export const metadata = {
 	title: "Update profile",
 };
 
-export default function Page() {
+export default async function Page() {
+	const session = await auth();
+	const guest = await getGuest();
+
 	// CHANGE
 	// const countryFlag = "pt.jpg";
 	const nationality = "portugal";
