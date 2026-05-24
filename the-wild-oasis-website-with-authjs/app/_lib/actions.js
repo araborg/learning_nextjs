@@ -6,7 +6,6 @@ import { supabase } from "./supabase";
 // ds update d profile (backend)
 export async function updateGuest(formData) {
 	// console.log("Server action");
-
 	// console.log(formData);
 
 	const session = await auth();
@@ -16,7 +15,7 @@ export async function updateGuest(formData) {
 	const nationalID = formData.get("nationalID");
 
 	const [nationality, countryFlag] = formData.get("nationality").split("%");
-	console.log(nationality, countryFlag);
+	// console.log(nationality, countryFlag);
 
 	if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID))
 		throw new Error("Please provide a valid national ID");
