@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, signIn, signOut } from "./auth";
+import { supabase } from "./supabase";
 
 // ds update d profile (backend)
 export async function updateGuest(formData) {
@@ -22,7 +23,19 @@ export async function updateGuest(formData) {
 
 	const updateData = { nationality, countryFlag, nationalID };
 
-	console.log(updateData);
+	// console.log(updateData);
+
+	const { data, error } = await supabase
+		.from("guests")
+		.update(updateData)
+		.eq("id", session.user.guestId)
+		.select()
+		.single();
+
+	if (error) {
+		console.error(error);
+		throw new Error("Guest could not be updated");
+	}
 }
 
 export async function signInAction() {
