@@ -1,12 +1,21 @@
 "use server";
 
-import { signIn, signOut } from "./auth";
+import { auth, signIn, signOut } from "./auth";
 
-// ds update d profile
+// ds update d profile (backend)
 export async function updateGuest(formData) {
 	// console.log("Server action");
 
-	console.log(formData);
+	// console.log(formData);
+
+	const session = await auth();
+
+	if (!session) throw new Error("You must be logged in");
+
+	const nationalID = formData.get("nationalID");
+	const [nationality, countryFlag] = formData.get("nationality").split("%");
+
+	// console.log(session);
 }
 
 export async function signInAction() {
