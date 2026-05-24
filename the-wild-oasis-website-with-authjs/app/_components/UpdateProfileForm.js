@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { updateGuest } from "../_lib/actions";
 
 // import SelectCountry from "@/app/_components/SelectCountry";
 
@@ -13,7 +14,10 @@ function UpdateProfileForm({ guest, children }) {
 	// const nationality = "portugal";
 
 	return (
-		<form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+		<form
+			action={updateGuest}
+			className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+		>
 			<div className="space-y-2">
 				<label>Full name</label>
 				<input
