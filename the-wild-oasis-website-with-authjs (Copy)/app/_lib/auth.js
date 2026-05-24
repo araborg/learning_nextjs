@@ -1,6 +1,7 @@
-// auth.js
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+
+import { createGuest, getGuest } from "./data-service";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
 	providers: [
@@ -10,4 +11,59 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			clientSecret: process.env.AUTH_GOOGLE_SECRET,
 		}),
 	],
+
+	callbacks: {
+		authorized({ auth, request }) {
+			// console.log(auth);
+
+			return !!auth?.user;
+		},
+
+		async signIn({ user, account, profile }) {
+			try {
+				const existingGuest = await getGuest(user.email);
+
+				if (!existingGuest)
+					await createGuest({
+						email: user.email,
+
+						fullName: user.name,
+					});
+
+				return true;
+			} catch (error) {
+				return false;
+			}
+		},
+
+		async session({ session, user }) {
+			const guest = await getGuest(session.user.email);
+
+			session.user.guestId = guest.id;
+
+			return session;
+		},
+	},
+
+	pages: {
+		signIn: "/login",
+	},
+
+	// callbacks: {
+	// 	authorized({ auth, request: { nextUrl } }) {
+	// 		const isLoggedIn = !!auth?.user;
+	// 		console.log(isLoggedIn);
+
+	// 		const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+
+	// 		if (isOnDashboard) {
+	// 			if (isLoggedIn) return true;
+	// 			return false; // Redirect unauthenticated users to login page
+	// 		} else if (isLoggedIn) {
+	// 			return Response.redirect(new URL("/dashboard", nextUrl));
+	// 		}
+
+	// 		return true;
+	// 	},
+	// },
 });

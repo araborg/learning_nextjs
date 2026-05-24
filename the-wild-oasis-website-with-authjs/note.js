@@ -139,6 +139,9 @@ Search Google Developer Console
 https://console.cloud.google.com/apis/dashboard
 
 
+Server Actions:
+are not for server components but for server actions.
+
 
 
 
