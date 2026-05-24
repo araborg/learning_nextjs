@@ -2,8 +2,11 @@
 
 import { signIn, signOut } from "./auth";
 
-export async function updateProfile() {
-	console.log("Server action");
+// ds update d profile
+export async function updateGuest(formData) {
+	// console.log("Server action");
+
+	console.log(formData);
 }
 
 export async function signInAction() {
