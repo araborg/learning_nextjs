@@ -4,11 +4,12 @@ import { useState } from "react";
 
 // import SelectCountry from "@/app/_components/SelectCountry";
 
-function UpdateProfileForm({ children }) {
+function UpdateProfileForm({ guest, children }) {
 	const [count, setCount] = useState();
+	const { fullName, email, nationality, nationalID, countryFlag } = guest;
 
 	// CHANGE
-	const countryFlag = "pt.jpg";
+	// const countryFlag = "pt.jpg";
 	// const nationality = "portugal";
 
 	return (
