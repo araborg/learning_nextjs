@@ -33,19 +33,25 @@ export async function updateGuest(formData) {
 	// .select()
 	// .single();
 
-	if (error) {
-		// console.error(error);
-		throw new Error("Guest could not be updated");
-	}
+	if (error) throw new Error("Guest could not be updated");
 
 	// helps refreshes d cache
 	revalidatePath("/account/profile");
 }
 
-export async function deleteReservation() {
+export async function deleteReservation(bookingId) {
 	const session = await auth();
 
 	if (!session) throw new Error("You must be logged in");
+
+	const { data, error } = await supabase
+		.from("bookings")
+		.delete()
+		.eq("id", id);
+
+	if (error) {
+		throw new Error("Booking could not be deleted");
+	}
 }
 
 export async function signInAction() {
