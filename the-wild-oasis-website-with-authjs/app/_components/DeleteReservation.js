@@ -13,6 +13,8 @@ function DeleteReservation({ bookingId }) {
 	const [isPending, startTransition] = useTransition();
 
 	function handleDelete() {
+		if (confirm("Are you sure you want to delete this reservation?"));
+
 		startTransition(() => deleteReservation(bookingId));
 	}
 
