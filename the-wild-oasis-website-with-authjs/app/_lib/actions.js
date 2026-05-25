@@ -47,7 +47,7 @@ export async function deleteReservation(bookingId) {
 	const { data, error } = await supabase
 		.from("bookings")
 		.delete()
-		.eq("id", id);
+		.eq("id", bookingId);
 
 	if (error) {
 		throw new Error("Booking could not be deleted");
