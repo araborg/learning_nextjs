@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { updateGuest } from "../_lib/actions";
-import { useFormState } from "react-dom";
+import { useFormStatus } from "react-dom";
 
 // import SelectCountry from "@/app/_components/SelectCountry";
 
@@ -75,8 +75,9 @@ function UpdateProfileForm({ guest, children }) {
 	);
 }
 
+// cr8ing a new compont for useFormStatus to be able to use it in oda compont
 function Button() {
-	const { pending } = useFormState();
+	const { pending } = useFormStatus();
 
 	return (
 		<button
