@@ -15,6 +15,7 @@ function DeleteReservation({ bookingId }) {
 
 	function handleDelete() {
 		if (confirm("Are you sure you want to delete this reservation?"))
+			// wrapping d fxn into startTransition hook 4 spinner to show
 			startTransition(() => deleteReservation(bookingId));
 	}
 
