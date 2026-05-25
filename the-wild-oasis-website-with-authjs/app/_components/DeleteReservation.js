@@ -31,7 +31,7 @@ function DeleteReservation({ bookingId }) {
 					<span className="mt-1">Delete</span>
 				</>
 			) : (
-				<span className="mt-1">
+				<span className="mx-auto">
 					<SpinnerMini />
 				</span>
 			)}
