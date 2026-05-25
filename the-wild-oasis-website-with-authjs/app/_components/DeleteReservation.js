@@ -1,12 +1,16 @@
 "use client";
 
-import { TrashIcon } from "@heroicons/react/24/solid";
 import { deleteReservation } from "../_lib/actions";
+
+import { TrashIcon } from "@heroicons/react/24/solid";
+import { useTransition } from "react";
 
 function DeleteReservation({ bookingId }) {
 	// function deleteReservation() {
 	// 	"use server";
 	// }
+
+	const [isPending, startTransition] = useTransition();
 
 	return (
 		<button
