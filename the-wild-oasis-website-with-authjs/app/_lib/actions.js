@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
+import { getBookings } from "./data-service";
 
 // ds update d profile (backend)
 export async function updateGuest(formData) {
