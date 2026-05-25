@@ -42,6 +42,12 @@ export async function updateGuest(formData) {
 	revalidatePath("/account/profile");
 }
 
+export async function deleteReservation() {
+	const session = await auth();
+
+	if (!session) throw new Error("You must be logged in");
+}
+
 export async function signInAction() {
 	await signIn("google", { redirectTo: "/account" });
 }
