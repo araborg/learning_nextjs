@@ -44,7 +44,14 @@ export async function deleteReservation(bookingId) {
 
 	if (!session) throw new Error("You must be logged in");
 
-	const { data, error } = await supabase
+	// only authorized user can delete
+	const guestBookings = await getBookings(session.user.guestId);
+	const guestBookingIds = guestBookings.map((booking) => booking.id);
+
+	if (!guestBookingIds.includes(bookingId))
+		throw new Error("You are not authorized to delete this booking");
+
+	const { error } = await supabase
 		.from("bookings")
 		.delete()
 		.eq("id", bookingId);
@@ -52,6 +59,9 @@ export async function deleteReservation(bookingId) {
 	if (error) {
 		throw new Error("Booking could not be deleted");
 	}
+
+	// helps refreshes d cache
+	revalidatePath("/account/reservations");
 }
 
 export async function signInAction() {
