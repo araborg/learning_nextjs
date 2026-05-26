@@ -1,9 +1,10 @@
 export default async function Page() {
 	// CHANGE
-	const reservationId = 23;
+	const reservationId = 389;
 	const maxCapacity = 23;
 
-	const cabin = await getCabin(cabinId);
+	// const cabin = await getCabin(cabinId);
+	const cabin = await getCabin(reservationId);
 
 	return (
 		<div>
