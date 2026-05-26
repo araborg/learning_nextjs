@@ -23,10 +23,11 @@ function DateSelector({ bookedDates, settings, cabin }) {
 	// const regularPrice = 23;
 	// const discount = 23;
 	// const numNights = 23;
-	const cabinPrice = 23;
+	// const cabinPrice = 23;
 
-	const { regularPrice, discount,  } = cabin;
-	const numNights; = differenceInDays(range)
+	const { regularPrice, discount } = cabin;
+	const numNights = differenceInDays(range.to, range.from);
+	const cabinPrice = numNights * (regularPrice - discount);
 
 	// SETTINGS
 	// const minBookingLength = 1;
