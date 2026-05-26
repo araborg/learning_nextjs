@@ -80,6 +80,12 @@ export async function updateReservation(formData) {
 	if (!guestBookingIds.includes(bookingId))
 		throw new Error("You are not allowed to update this booking");
 
+	const updatedData = {
+		numGuests: Number(formData.get("numGuests")),
+
+		observations: formData.get("observations"),
+	};
+
 	const { data, error } = await supabase
 		.from("bookings")
 		.update(updatedFields)
