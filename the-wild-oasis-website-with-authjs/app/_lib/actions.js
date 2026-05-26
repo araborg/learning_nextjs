@@ -69,6 +69,7 @@ export async function deleteReservation(bookingId) {
 // Update
 export async function updateReservation(formData) {
 	// console.log(formData);
+	const bookingId = Number(formData.get("bookingId"));
 
 	// 1. Authentication
 	const session = await auth();
@@ -89,8 +90,6 @@ export async function updateReservation(formData) {
 		observations: formData.get("observations").slice(0, 1000),
 	};
 
-	const bookingId = Number(formData.get("bookingId"));
-
 	// 4. Mutation
 	const { error } = await supabase
 		.from("bookings")
@@ -102,7 +101,11 @@ export async function updateReservation(formData) {
 	// 5. Error handling
 	if (error) throw new Error("Booking could not be updated");
 
-	// 6. Redirecting
+	// 6. Revalidate
+	// helps refreshes d cache
+	revalidatePath("/account/reservations");
+
+	// 7. Redirecting
 	redirect("/account/reservations");
 }
 
