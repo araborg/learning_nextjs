@@ -1,8 +1,10 @@
 "use client";
 
+import SubmitButton from "./SubmitButton";
+
 import { useState } from "react";
 import { updateGuest } from "../_lib/actions";
-import { useFormStatus } from "react-dom";
+// import { useFormStatus } from "react-dom";
 
 // import SelectCountry from "@/app/_components/SelectCountry";
 
@@ -68,25 +70,29 @@ function UpdateProfileForm({ guest, children }) {
 				/>
 			</div>
 
-			<div className="flex justify-end items-center gap-6">
+			{/* <div className="flex justify-end items-center gap-6">
 				<Button />
+			</div> */}
+
+			<div className="flex justify-end items-center gap-6">
+				<SubmitButton />
 			</div>
 		</form>
 	);
 }
 
 // cr8ing a new compont for useFormStatus to be able to use it in oda compont
-function Button() {
-	const { pending } = useFormStatus();
+// function Button() {
+// 	const { pending } = useFormStatus();
 
-	return (
-		<button
-			className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
-			disabled={pending}
-		>
-			{pending ? "Updating..." : "Update profile"}
-		</button>
-	);
-}
+// 	return (
+// 		<button
+// 			className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+// 			disabled={pending}
+// 		>
+// 			{pending ? "Updating..." : "Update profile"}
+// 		</button>
+// 	);
+// }
 
 export default UpdateProfileForm;
