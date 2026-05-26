@@ -53,7 +53,7 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				mode="range"
 				// onSelect={(range) => setRange(range)}
 				onSelect={setRange}
-				selected={range}
+				// selected={range}
 				// selected={displayRange}
 				// setRange(range)
 				min={minBookingLength + 1}
@@ -63,12 +63,14 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				toYear={new Date().getFullYear() + 5}
 				captionLayout="dropdown"
 				numberOfMonths={2}
-				disabled={{ dayOfWeek: [0, 6] }}
 				// disabled={(curDate) =>
 				// 	isPast(curDate) ||
 				// 	bookedDates.some((date) => isSameDay(date, curDate))
 				// }
 
+				// added ds alternative
+				selected={range}
+				disabled={{ dayOfWeek: [0, 6] }}
 				excludeDisabled
 			/>
 
