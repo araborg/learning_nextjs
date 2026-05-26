@@ -1,11 +1,22 @@
 import { getCabin } from "@/app/_lib/data-service";
+export async function generateStaticParams() {
+	const cabins = await getCabins();
+
+	const ids = cabins.map((cabin) => ({
+		cabinId: String(cabin.id),
+	}));
+
+	// console.log(ids);
+
+	return ids;
+}
 
 export default async function Page({ params }) {
 	// console.log(params);
 
 	// CHANGE
 	const reservationId = 389;
-	// const maxCapacity = 23;
+	const maxCapacity = 23;
 
 	// const cabin = await getCabin(cabinId);
 	const cabin = await getCabin(params.cabinId);
@@ -20,6 +31,7 @@ export default async function Page({ params }) {
 			<form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
 				<div className="space-y-2">
 					<label htmlFor="numGuests">How many guests?</label>
+
 					<select
 						name="numGuests"
 						id="numGuests"
