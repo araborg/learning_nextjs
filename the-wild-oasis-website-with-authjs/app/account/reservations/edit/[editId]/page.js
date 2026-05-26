@@ -1,4 +1,5 @@
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabins } from "@/app/_lib/data-service";
+
 export async function generateStaticParams() {
 	const cabins = await getCabins();
 
@@ -15,12 +16,12 @@ export default async function Page({ params }) {
 	// console.log(params);
 
 	// CHANGE
-	const reservationId = 389;
-	const maxCapacity = 23;
+	// const reservationId = 389;
+	// const maxCapacity = 23;
 
 	// const cabin = await getCabin(cabinId);
-	const cabin = await getCabin(params.cabinId);
-	console.log(cabin);
+	const { reservationId, maxCapacity } = await getCabin(params.cabinId);
+	console.log(maxCapacity, reservationId);
 
 	return (
 		<div>
