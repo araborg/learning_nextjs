@@ -1,10 +1,12 @@
-export default async function Page() {
+export default async function Page({ params }) {
+	console.log(params);
+
 	// CHANGE
 	const reservationId = 389;
 	const maxCapacity = 23;
 
 	// const cabin = await getCabin(cabinId);
-	const cabin = await getCabin(reservationId);
+	// const cabin = await getCabin(reservationId);
 
 	return (
 		<div>
