@@ -1,5 +1,11 @@
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 
+export async function generateMetadata({ params }) {
+	const { id } = await getBooking(params.editId);
+
+	return { title: `Update Reservation ${id}` };
+}
+
 export default async function Page({ params }) {
 	// CHANGE
 	// const reservationId = 389;
