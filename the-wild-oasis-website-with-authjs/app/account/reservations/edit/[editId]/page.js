@@ -1,16 +1,12 @@
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
-	// console.log(params);
-
 	// CHANGE
 	// const reservationId = 389;
 	// const maxCapacity = 23;
 
-	// const cabin = await getCabin(cabinId);
 	const { id: reservationId, cabinId } = await getBooking(params.editId);
 	const { maxCapacity } = await getCabin(cabinId);
-	console.log(reservationId, maxCapacity);
 
 	return (
 		<div>
