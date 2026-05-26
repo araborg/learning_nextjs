@@ -1,26 +1,14 @@
-import { getCabin, getCabins } from "@/app/_lib/data-service";
-
-export async function generateStaticParams() {
-	const cabins = await getCabins();
-
-	const ids = cabins.map((cabin) => ({
-		cabinId: String(cabin.id),
-	}));
-
-	// console.log(ids);
-
-	return ids;
-}
+import { getBooking } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
 	// console.log(params);
 
 	// CHANGE
-	// const reservationId = 389;
-	// const maxCapacity = 23;
+	const reservationId = 389;
+	const maxCapacity = 23;
 
 	// const cabin = await getCabin(cabinId);
-	const cabin = await getCabin(params.cabinId);
+	const cabin = await getBooking(params.editId);
 	console.log(cabin);
 
 	return (
