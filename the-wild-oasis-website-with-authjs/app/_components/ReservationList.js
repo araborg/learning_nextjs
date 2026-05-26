@@ -1,6 +1,12 @@
+"use client";
+
 import ReservationCard from "@/app/_components/ReservationCard";
 
+import { useOptimistic } from "react";
+
 function ReservationList({ bookings }) {
+	useOptimistic();
+
 	return (
 		<ul className="space-y-6">
 			{bookings.map((booking) => (
