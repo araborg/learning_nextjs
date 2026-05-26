@@ -34,7 +34,7 @@ function DateSelector({ bookedDates, settings, cabin }) {
 	// const cabinPrice = 23;
 
 	const { regularPrice, discount } = cabin;
-	const numNights = differenceInDays(range.to, range.from);
+	const numNights = differenceInDays(range?.to, range?.from);
 	// const numNights = differenceInDays(displayRange.to, displayRange.from);
 	const cabinPrice = numNights * (regularPrice - discount);
 
@@ -110,7 +110,7 @@ function DateSelector({ bookedDates, settings, cabin }) {
 					) : null}
 				</div>
 
-				{range.from || range.to ? (
+				{range?.from || range?.to ? (
 					<button
 						className="border border-primary-800 py-2 px-4 text-sm font-semibold"
 						// onClick={() => resetRange()}
