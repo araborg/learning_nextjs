@@ -17,7 +17,7 @@ export default async function Page({ params }) {
 	const { numGuests, observations, cabinId } = await getBooking(bookingId);
 	const { maxCapacity } = await getCabin(cabinId);
 
-	console.log(observations);
+	// console.log(observations);
 
 	// my attenmpt
 	// const { id: reservationId, cabinId } = await getBooking(params.editId);

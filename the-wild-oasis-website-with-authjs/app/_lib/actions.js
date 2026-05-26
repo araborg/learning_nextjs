@@ -67,19 +67,27 @@ export async function deleteReservation(bookingId) {
 
 // Update
 export async function updateReservation(formData) {
-	console.log(formData);
+	// console.log(formData);
 
-	// const { data, error } = await supabase
-	// 	.from("bookings")
-	// 	.update(updatedFields)
-	// 	.eq("id", id)
-	// 	.select()
-	// 	.single();
+	const session = await auth();
 
-	// if (error) {
-	// 	console.error(error);
-	// 	throw new Error("Booking could not be updated");
-	// }
+	if (!session) throw new Error("You must be logged in");
+
+	// only authorized user can delete
+	const guestBookings = await getBookings(session.user.guestId);
+	const guestBookingIds = guestBookings.map((booking) => booking.id);
+
+	if (!guestBookingIds.includes(bookingId))
+		throw new Error("You are not authorized to update this booking");
+
+	const { data, error } = await supabase
+		.from("bookings")
+		.update(updatedFields)
+		.eq("id", id)
+		.select()
+		.single();
+
+	if (error) throw new Error("Booking could not be updated");
 }
 
 export async function signInAction() {
