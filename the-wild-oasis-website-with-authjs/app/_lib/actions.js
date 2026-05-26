@@ -83,12 +83,14 @@ export async function updateReservation(formData) {
 	const updatedData = {
 		numGuests: Number(formData.get("numGuests")),
 
-		observations: formData.get("observations"),
+		observations: formData.get("observations").slice(0, 1000),
 	};
 
-	const { data, error } = await supabase
+	const bookingId = formData.get("bookingId");
+
+	const { error } = await supabase
 		.from("bookings")
-		.update(updatedFields)
+		.update(updatedData)
 		.eq("id", id)
 		.select()
 		.single();
