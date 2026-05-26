@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
+import { redirect } from "next/navigation";
 
 // ds update d profile (backend)
 export async function updateGuest(formData) {
@@ -69,10 +70,12 @@ export async function deleteReservation(bookingId) {
 export async function updateReservation(formData) {
 	// console.log(formData);
 
+	// 1. Authentication
 	const session = await auth();
 
 	if (!session) throw new Error("You must be logged in");
 
+	// 2. Authorization
 	// only authorized user can delete
 	const guestBookings = await getBookings(session.user.guestId);
 	const guestBookingIds = guestBookings.map((booking) => booking.id);
@@ -80,22 +83,26 @@ export async function updateReservation(formData) {
 	if (!guestBookingIds.includes(bookingId))
 		throw new Error("You are not allowed to update this booking");
 
+	// 3. Building update data
 	const updatedData = {
 		numGuests: Number(formData.get("numGuests")),
 
 		observations: formData.get("observations").slice(0, 1000),
 	};
 
-	const bookingId = formData.get("bookingId");
+	const bookingId = Number(formData.get("bookingId"));
 
+	// 4. Mutation
 	const { error } = await supabase
 		.from("bookings")
 		.update(updatedData)
-		.eq("id", id)
+		.eq("id", bookingId)
 		.select()
 		.single();
 
 	if (error) throw new Error("Booking could not be updated");
+
+	redirect("/account/reservations");
 }
 
 export async function signInAction() {
