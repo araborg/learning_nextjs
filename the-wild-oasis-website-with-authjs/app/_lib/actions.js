@@ -78,7 +78,7 @@ export async function updateReservation(formData) {
 	const guestBookingIds = guestBookings.map((booking) => booking.id);
 
 	if (!guestBookingIds.includes(bookingId))
-		throw new Error("You are not authorized to update this booking");
+		throw new Error("You are not allowed to update this booking");
 
 	const { data, error } = await supabase
 		.from("bookings")
