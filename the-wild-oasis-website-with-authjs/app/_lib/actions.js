@@ -65,6 +65,9 @@ export async function deleteReservation(bookingId) {
 	revalidatePath("/account/reservations");
 }
 
+// Update
+export async function updateReservation(bookingId) {}
+
 export async function signInAction() {
 	await signIn("google", { redirectTo: "/account" });
 }
