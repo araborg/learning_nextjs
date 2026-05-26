@@ -1,4 +1,6 @@
-function ReservationList() {
+import ReservationCard from "@/app/_components/ReservationCard";
+
+function ReservationList({ bookings }) {
 	return (
 		<ul className="space-y-6">
 			{bookings.map((booking) => (
