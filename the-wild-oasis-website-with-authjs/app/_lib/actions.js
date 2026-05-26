@@ -75,8 +75,7 @@ export async function updateReservation(formData) {
 
 	if (!session) throw new Error("You must be logged in");
 
-	// 2. Authorization
-	// only authorized user can delete
+	// 2. Authorization: only authorized user can update
 	const guestBookings = await getBookings(session.user.guestId);
 	const guestBookingIds = guestBookings.map((booking) => booking.id);
 
@@ -100,8 +99,10 @@ export async function updateReservation(formData) {
 		.select()
 		.single();
 
+	// 5. Error handling
 	if (error) throw new Error("Booking could not be updated");
 
+	// 6. Redirecting
 	redirect("/account/reservations");
 }
 
