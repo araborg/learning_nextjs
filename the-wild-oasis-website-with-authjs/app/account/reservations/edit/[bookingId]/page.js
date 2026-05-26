@@ -3,7 +3,7 @@ import { getBooking, getCabin } from "@/app/_lib/data-service";
 export async function generateMetadata({ params }) {
 	const { id } = await getBooking(params.bookingId);
 
-	return { title: `Update Reservation ${id}` };
+	return { title: `Update Reservation #${id}` };
 }
 
 export default async function Page({ params }) {
@@ -11,8 +11,12 @@ export default async function Page({ params }) {
 
 	// CHANGE
 	// const reservationId = 389;
-	const maxCapacity = 23;
+	// const maxCapacity = 23;
 
+	const { numGuests, observations, cabinId } = await getBooking(bookingId);
+	const { maxCapacity } = await getCabin(cabinId);
+
+	// my attenmpt
 	// const { id: reservationId, cabinId } = await getBooking(params.editId);
 	// const { maxCapacity } = await getCabin(cabinId);
 
