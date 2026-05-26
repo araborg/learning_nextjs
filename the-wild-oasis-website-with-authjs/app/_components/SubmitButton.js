@@ -1,4 +1,6 @@
-function Button() {
+"use client";
+
+export default function Button() {
 	const { pending } = useFormStatus();
 
 	return (
