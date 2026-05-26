@@ -34,6 +34,8 @@ export default async function Page({ params }) {
 				action={updateReservation}
 				className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
 			>
+				<input type="hidden" name="bookingId" value={bookingId} />
+
 				<div className="space-y-2">
 					<label htmlFor="numGuests">How many guests?</label>
 
