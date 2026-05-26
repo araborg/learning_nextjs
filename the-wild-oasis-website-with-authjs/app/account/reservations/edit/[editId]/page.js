@@ -20,8 +20,8 @@ export default async function Page({ params }) {
 	// const maxCapacity = 23;
 
 	// const cabin = await getCabin(cabinId);
-	const { reservationId, maxCapacity } = await getCabin(params.cabinId);
-	console.log(maxCapacity, reservationId);
+	const cabin = await getCabin(params.cabinId);
+	console.log(cabin);
 
 	return (
 		<div>

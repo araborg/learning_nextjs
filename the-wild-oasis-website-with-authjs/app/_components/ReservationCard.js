@@ -24,7 +24,7 @@ function ReservationCard({ booking }) {
 		cabins: { name, image },
 	} = booking;
 
-	console.log(id);
+	// console.log(id);
 
 	return (
 		<div className="flex border border-primary-800">
