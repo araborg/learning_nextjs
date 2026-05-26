@@ -1,23 +1,26 @@
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 
 export async function generateMetadata({ params }) {
-	const { id } = await getBooking(params.editId);
+	const { id } = await getBooking(params.bookingId);
 
 	return { title: `Update Reservation ${id}` };
 }
 
 export default async function Page({ params }) {
+	const { bookingId } = params;
+
 	// CHANGE
 	// const reservationId = 389;
-	// const maxCapacity = 23;
+	const maxCapacity = 23;
 
-	const { id: reservationId, cabinId } = await getBooking(params.editId);
-	const { maxCapacity } = await getCabin(cabinId);
+	// const { id: reservationId, cabinId } = await getBooking(params.editId);
+	// const { maxCapacity } = await getCabin(cabinId);
 
 	return (
 		<div>
 			<h2 className="font-semibold text-2xl text-accent-400 mb-7">
-				Edit Reservation #{reservationId}
+				{/* Edit Reservation #{reservationId} */}
+				Edit Reservation #{bookingId}
 			</h2>
 
 			<form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
