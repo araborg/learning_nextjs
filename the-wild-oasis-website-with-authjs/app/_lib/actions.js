@@ -106,6 +106,7 @@ export async function updateReservation(formData) {
 	revalidatePath("/account/reservations");
 
 	// 7. Redirecting
+	redirect(`/account/reservations/edit/${bookingId}`);
 	redirect("/account/reservations");
 }
 
