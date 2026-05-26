@@ -34,7 +34,8 @@ function DateSelector({ bookedDates, settings, cabin }) {
 	// const cabinPrice = 23;
 
 	const { regularPrice, discount } = cabin;
-	const numNights = differenceInDays(range.to, range.from);
+	// const numNights = differenceInDays(range.to, range.from);
+	const numNights = differenceInDays(displayRange.to, displayRange.from);
 	const cabinPrice = numNights * (regularPrice - discount);
 
 	// SETTINGS
@@ -52,7 +53,8 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				mode="range"
 				// onSelect={(range) => setRange(range)}
 				onSelect={setRange}
-				selected={range}
+				// selected={range}
+				selected={displayRange}
 				// setRange(range)
 				min={minBookingLength + 1}
 				max={maxBookingLength}
