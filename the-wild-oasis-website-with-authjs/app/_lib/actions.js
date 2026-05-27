@@ -41,10 +41,10 @@ export async function updateGuest(formData) {
 	revalidatePath("/account/profile");
 }
 
-export async function createBookin(formData) {}
+export async function createBooking(formData) {}
 
-export async function deleteReservation(bookingId) {
-	await new Promise((res) => setTimeout(res, 2000));
+export async function deleteBooking(bookingId) {
+	// await new Promise((res) => setTimeout(res, 2000));
 
 	const session = await auth();
 
