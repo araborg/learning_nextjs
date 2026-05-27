@@ -5,7 +5,7 @@ import { useReservation } from "./ReservationContext";
 import { createBooking } from "../_lib/actions";
 
 function ReservationForm({ cabin, user }) {
-	const { range } = useReservation();
+	const { range, resetRange } = useReservation();
 
 	// const maxCapacity = 23;
 	const { maxCapacity, regurlarPrice, discount, id } = cabin;
@@ -50,7 +50,12 @@ function ReservationForm({ cabin, user }) {
 
 			<form
 				// action={createBooking}
-				action={createBookingWithData}
+				// action={createBookingWithData}
+				action={async (formData) => {
+					await createBookingWithData(formData);
+
+					resetRange();
+				}}
 				className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
 			>
 				<div className="space-y-2">
