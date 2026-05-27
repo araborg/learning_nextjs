@@ -63,16 +63,31 @@ function DateSelector({ bookedDates, settings, cabin }) {
 				toYear={new Date().getFullYear() + 5}
 				captionLayout="dropdown"
 				numberOfMonths={2}
-				// disabled={(curDate) =>
-				// 	isPast(curDate) ||
-				// 	bookedDates.some((date) => isSameDay(date, curDate))
-				// }
+				disabled={(curDate) =>
+					isPast(curDate) ||
+					bookedDates.some((date) => isSameDay(date, curDate))
+				}
+			/>
+			{/* <DayPicker
+				className="pt-12 place-self-center"
+				mode="range"
 
-				// added ds alternative
+				onSelect={setRange}
+				// selected={range}
+				// selected={displayRange}
+				// setRange(range)
+				min={minBookingLength + 1}
+				max={maxBookingLength}
+				fromMonth={new Date()}
+				fromDate={new Date()}
+				toYear={new Date().getFullYear() + 5}
+				captionLayout="dropdown"
+				numberOfMonths={2}
+				
 				selected={range}
 				disabled={{ dayOfWeek: [0, 6] }}
 				excludeDisabled
-			/>
+			/> */}
 
 			<div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
 				<div className="flex items-baseline gap-6">
