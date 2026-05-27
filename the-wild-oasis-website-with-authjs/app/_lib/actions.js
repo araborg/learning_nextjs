@@ -41,8 +41,24 @@ export async function updateGuest(formData) {
 	revalidatePath("/account/profile");
 }
 
-export async function createBooking(formData) {
-	console.log(formData);
+export async function createBooking(bookingData, formData) {
+	// console.log(formData);
+
+	const session = await auth();
+
+	if (!session) throw new Error("You must be logged in");
+
+	// for huge formData:
+	// Object.entries(formData.entries());
+
+	const newBooking = {
+		...bookingData,
+		guestId: session.user.guestId,
+		numGuests: formData.get("numGuests"),
+		observations: formData.get("observations").slice(0, 1000),
+	};
+
+	//
 }
 
 export async function deleteBooking(bookingId) {
