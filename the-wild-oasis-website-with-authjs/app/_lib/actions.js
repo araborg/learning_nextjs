@@ -65,16 +65,14 @@ export async function createBooking(bookingData, formData) {
 
 	// console.log(newBooking);
 
-	const { error } = await supabase
-		.from("bookings")
-		.insert([newBooking])
-		// So that the newly created object gets returned!
-		.select()
-		.single();
+	const { error } = await supabase.from("bookings").insert([newBooking]);
+	// So that the newly created object gets returned!
+	// .select()
+	// .single();
 
 	if (error) throw new Error("Booking could not be created");
 
-	revalidatePath("/account/reservations");
+	revalidatePath(`/cabins/${bookingData.cabinId}}`);
 }
 
 export async function deleteBooking(bookingId) {
