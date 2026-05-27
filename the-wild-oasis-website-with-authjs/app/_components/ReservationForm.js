@@ -8,7 +8,7 @@ function ReservationForm({ cabin, user }) {
 	const { range } = useReservation();
 
 	// const maxCapacity = 23;
-	const { maxCapacity, regurlarPrice, discount } = cabin;
+	const { maxCapacity, regurlarPrice, discount, id } = cabin;
 
 	const startDate = range.from;
 	const endDate = range.to;

@@ -63,13 +63,16 @@ export async function createBooking(bookingData, formData) {
 		status: "unconfirmed",
 	};
 
-	console.log(newBooking);
+	// console.log(newBooking);
 
-	// const { data, error } = await supabase
-	// 	.from("bookings")
-	// 	.insert([newBooking
+	const { error } = await supabase
+		.from("bookings")
+		.insert([newBooking])
+		// So that the newly created object gets returned!
+		.select()
+		.single();
 
-	//
+	if (error) throw new Error("Booking could not be created");
 }
 
 export async function deleteBooking(bookingId) {
