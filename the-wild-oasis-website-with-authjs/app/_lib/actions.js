@@ -54,8 +54,12 @@ export async function createBooking(bookingData, formData) {
 	const newBooking = {
 		...bookingData,
 		guestId: session.user.guestId,
-		numGuests: formData.get("numGuests"),
-		observations: formData.get("observations").slice(0, 1000),
+		numGuests: Number(formData.get("numGuests")),
+		observations: formData.get("observations"),
+		extrasPrice: 0,
+		totalPrice: bookingData.cabinPrice,
+		isPaid: false,
+		hasBreakfast: false,
 	};
 
 	//
